@@ -1,0 +1,47 @@
+<form [formGroup]="createNoticeForm" (ngSubmit)="onSubmit()" >
+  <div class="form-group row" style="margin-top : 20px">
+    <label for="staticTitle" class="col-sm-2 col-form-label">Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="staticTitle" formControlName="title">
+      <p *ngIf="createNoticeForm.controls.title.dirty 
+      && createNoticeForm.controls.title.errors">
+        Title is required!</p>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="staticContent" class="col-sm-2 col-form-label">Content</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="staticContent" rows="5" formControlName="content" [(ngModel)]="myContent" ></textarea>
+      <!-- content.errors?.lengthTooShort is get by in ts get content(){return this.createNoticeForm.controls.content;} -->
+      <!-- [(ngModel)]="myContent" serve 2-way binding in Component property myContent , {{myContent}} -->
+      <!-- formControlName="content" tell angular that this field is binded to createNoticeForm's content field-->
+      <p *ngIf="createNoticeForm.controls.content.dirty 
+      && ( createNoticeForm.controls.content.errors || content.errors?.lengthTooShort ) ">
+        Content is required and should have minimum length!</p>
+    </div>
+   
+  </div>
+
+  <div class="form-group row">
+    <!-- (change)="changeCompany($event) -->
+    <select class="custom-select" formControlName="company" >
+      <option disabled>Choose Value</option>
+      <option value="">Choose Company</option>
+      <option *ngFor="let company of companyList"  [ngValue]="company.id"  >
+        {{company.name}}
+      </option>
+    </select>
+    <!-- 
+    <div *ngIf="isValidated && fruits.errors?.required" class="alert alert-danger mt-2">
+      Please choose some value
+    </div>
+    -->
+  </div>
+
+  <div class="form-group row">
+    <button type="submit" >Submit</button>
+  </div>
+  <!--
+  <h4>{{myContent}}</h4>
+  -->
+</form>

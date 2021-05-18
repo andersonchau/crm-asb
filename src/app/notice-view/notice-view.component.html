@@ -1,0 +1,18 @@
+<div class="container" style="margin-top:30px">
+    <div class="container">
+        <div class="row" style="margin-bottom:10px">
+            <h4>You have 0 notice</h4>
+        </div>
+        <div class="row" *ngFor="let notice of noticeList$ | async; index as i" style="margin-top:5px">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" >{{notice.msg}}</div>
+                    <div class="card-body" >{{notice.createDate}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row"  style="margin-top:5px">
+            <a class="btn btn-primary" routerLink="/" role="button">Back to Main</a>
+        </div>
+    </div>
+</div>
